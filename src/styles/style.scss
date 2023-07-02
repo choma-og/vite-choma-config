@@ -1,0 +1,19 @@
+@import "./settings";
+@import "./mixins";
+@import "./fonts";
+
+body {
+  font-size: 90px;
+  background-color: rgb(222, 52, 245);
+  color: white;
+}
+.main {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+.choma {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
