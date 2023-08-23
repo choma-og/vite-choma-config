@@ -6,6 +6,8 @@ import autoprefixer from 'autoprefixer';
 import browserslist from 'browserslist';
 import handlebars from 'vite-plugin-handlebars';
 import zipPack from "vite-plugin-zip-pack";
+import HandlebarUpdate from "./src/js/handlebarUpdate";
+
 
 const pageData = {
   "/index.html": {
@@ -17,17 +19,19 @@ const pageData = {
 global.navigator = undefined
 
 export default defineConfig({
+  
   resolve: {
     alias: {
       '@' : resolve(__dirname, 'src'),
     },
   },
   server: {
+    hmr: true,
     // open: true,
     // host: true,
     port: 8888,
   },
-    base: '/vite-choma-main/',
+    base: '/whoosh/',
   // root: "src",
   // publicDir: "public",
   build: {
@@ -57,6 +61,7 @@ export default defineConfig({
   //   index: resolve(__dirname, "index.html"),
   // },
   plugins: [
+    HandlebarUpdate(),
     squooshPlugin({
       // Specify codec options.
       codecs: {
@@ -114,6 +119,7 @@ export default defineConfig({
       context(pagePath) {
         return pageData[pagePath];
       },
+      reloadOnPartialChange: true,
     }),
     zipPack({
       outFileName: `choma__project.zip`
